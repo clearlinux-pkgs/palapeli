@@ -6,7 +6,7 @@
 #
 Name     : palapeli
 Version  : 18.08.0
-Release  : 1
+Release  : 2
 URL      : https://download.kde.org/stable/applications/18.08.0/src/palapeli-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/palapeli-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/palapeli-18.08.0.tar.xz.sig
@@ -99,7 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535238167
+export SOURCE_DATE_EPOCH=1535435631
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -107,7 +107,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535238167
+export SOURCE_DATE_EPOCH=1535435631
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/palapeli
 cp COPYING %{buildroot}/usr/share/doc/palapeli/COPYING
@@ -170,6 +170,7 @@ popd
 /usr/share/palapeli/collection/panther-chameleon-female.desktop
 /usr/share/palapeli/collection/panther-chameleon-female.jpg
 /usr/share/palapeli/palapeli.kcfg
+/usr/share/xdg/palapeli-collectionrc
 
 %files dev
 %defattr(-,root,root,-)
