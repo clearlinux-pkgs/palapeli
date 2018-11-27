@@ -6,22 +6,23 @@
 #
 Name     : palapeli
 Version  : 18.08.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/applications/18.08.0/src/palapeli-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/palapeli-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/palapeli-18.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
-Requires: palapeli-bin
-Requires: palapeli-lib
-Requires: palapeli-data
-Requires: palapeli-license
-Requires: palapeli-locales
+Requires: palapeli-bin = %{version}-%{release}
+Requires: palapeli-data = %{version}-%{release}
+Requires: palapeli-lib = %{version}-%{release}
+Requires: palapeli-license = %{version}-%{release}
+Requires: palapeli-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : libkdegames-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 BuildRequires : shared-mime-info
 
 %description
@@ -30,8 +31,8 @@ This directory contains the fancy headers for libpala. For example, you can incl
 %package bin
 Summary: bin components for the palapeli package.
 Group: Binaries
-Requires: palapeli-data
-Requires: palapeli-license
+Requires: palapeli-data = %{version}-%{release}
+Requires: palapeli-license = %{version}-%{release}
 
 %description bin
 bin components for the palapeli package.
@@ -48,10 +49,10 @@ data components for the palapeli package.
 %package dev
 Summary: dev components for the palapeli package.
 Group: Development
-Requires: palapeli-lib
-Requires: palapeli-bin
-Requires: palapeli-data
-Provides: palapeli-devel
+Requires: palapeli-lib = %{version}-%{release}
+Requires: palapeli-bin = %{version}-%{release}
+Requires: palapeli-data = %{version}-%{release}
+Provides: palapeli-devel = %{version}-%{release}
 
 %description dev
 dev components for the palapeli package.
@@ -68,8 +69,8 @@ doc components for the palapeli package.
 %package lib
 Summary: lib components for the palapeli package.
 Group: Libraries
-Requires: palapeli-data
-Requires: palapeli-license
+Requires: palapeli-data = %{version}-%{release}
+Requires: palapeli-license = %{version}-%{release}
 
 %description lib
 lib components for the palapeli package.
@@ -99,20 +100,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535435631
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1543348970
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535435631
+export SOURCE_DATE_EPOCH=1543348970
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/palapeli
-cp COPYING %{buildroot}/usr/share/doc/palapeli/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/palapeli/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/doc/palapeli/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/palapeli
+cp COPYING %{buildroot}/usr/share/package-licenses/palapeli/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/palapeli/COPYING.DOC
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/palapeli/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -152,7 +153,7 @@ popd
 /usr/share/kservicetypes5/libpala-slicerplugin.desktop
 /usr/share/kxmlgui5/palapeli/palapeliui.rc
 /usr/share/metainfo/org.kde.palapeli.appdata.xml
-/usr/share/mime/packages/palapeli-mimetypes.xml
+/usr/share/mime-packages/palapeli-mimetypes.xml
 /usr/share/palapeli/backgrounds/Eliminator-Funk-2.jpg
 /usr/share/palapeli/backgrounds/Rear-Admiral-Diplomat-1.jpg
 /usr/share/palapeli/backgrounds/Time-For-Lunch-2.jpg
@@ -226,10 +227,10 @@ popd
 /usr/lib64/qt5/plugins/palathumbcreator.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/palapeli/COPYING
-/usr/share/doc/palapeli/COPYING.DOC
-/usr/share/doc/palapeli/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/palapeli/COPYING
+/usr/share/package-licenses/palapeli/COPYING.DOC
+/usr/share/package-licenses/palapeli/COPYING.LIB
 
 %files locales -f palapeli.lang
 %defattr(-,root,root,-)
