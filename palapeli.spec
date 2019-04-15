@@ -6,11 +6,11 @@
 #
 Name     : palapeli
 Version  : 18.12.3
-Release  : 5
+Release  : 6
 URL      : https://download.kde.org/stable/applications/18.12.3/src/palapeli-18.12.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.3/src/palapeli-18.12.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.3/src/palapeli-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : A single-player jigsaw puzzle game
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
 Requires: palapeli-bin = %{version}-%{release}
@@ -23,9 +23,14 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : libkdegames-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : shared-mime-info
 
 %description
-This directory contains the fancy headers for libpala. For example, you can include <Pala/Slicer> instead of <libpala/slicer.h>.
+The Goldberg Slicer: Versatile grid generator for the KDE puzzle game Palapeli
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
 %package bin
 Summary: bin components for the palapeli package.
@@ -52,6 +57,7 @@ Requires: palapeli-lib = %{version}-%{release}
 Requires: palapeli-bin = %{version}-%{release}
 Requires: palapeli-data = %{version}-%{release}
 Provides: palapeli-devel = %{version}-%{release}
+Requires: palapeli = %{version}-%{release}
 
 %description dev
 dev components for the palapeli package.
@@ -99,16 +105,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552013252
+export SOURCE_DATE_EPOCH=1555348999
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552013252
+export SOURCE_DATE_EPOCH=1555348999
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/palapeli
 cp COPYING %{buildroot}/usr/share/package-licenses/palapeli/COPYING
