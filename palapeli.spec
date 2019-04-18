@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : palapeli
-Version  : 18.12.3
-Release  : 6
-URL      : https://download.kde.org/stable/applications/18.12.3/src/palapeli-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/palapeli-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/palapeli-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 7
+URL      : https://download.kde.org/stable/applications/19.04.0/src/palapeli-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/palapeli-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/palapeli-19.04.0.tar.xz.sig
 Summary  : A single-player jigsaw puzzle game
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -23,7 +23,6 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : libkdegames-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : shared-mime-info
 
 %description
 The Goldberg Slicer: Versatile grid generator for the KDE puzzle game Palapeli
@@ -98,14 +97,14 @@ locales components for the palapeli package.
 
 
 %prep
-%setup -q -n palapeli-18.12.3
+%setup -q -n palapeli-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555348999
+export SOURCE_DATE_EPOCH=1555626407
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -113,12 +112,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555348999
+export SOURCE_DATE_EPOCH=1555626407
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/palapeli
 cp COPYING %{buildroot}/usr/share/package-licenses/palapeli/COPYING
 cp COPYING.DOC %{buildroot}/usr/share/package-licenses/palapeli/COPYING.DOC
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/palapeli/COPYING.LIB
+cp src/pics/LICENSE %{buildroot}/usr/share/package-licenses/palapeli/src_pics_LICENSE
 pushd clr-build
 %make_install
 popd
@@ -177,6 +177,7 @@ popd
 /usr/share/palapeli/collection/panther-chameleon-female.jpg
 /usr/share/palapeli/palapeli.kcfg
 /usr/share/xdg/palapeli-collectionrc
+/usr/share/xdg/palapeli.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -236,6 +237,7 @@ popd
 /usr/share/package-licenses/palapeli/COPYING
 /usr/share/package-licenses/palapeli/COPYING.DOC
 /usr/share/package-licenses/palapeli/COPYING.LIB
+/usr/share/package-licenses/palapeli/src_pics_LICENSE
 
 %files locales -f palapeli.lang
 %defattr(-,root,root,-)
