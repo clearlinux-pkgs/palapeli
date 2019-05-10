@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : palapeli
-Version  : 19.04.0
-Release  : 8
-URL      : https://download.kde.org/stable/applications/19.04.0/src/palapeli-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/palapeli-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/palapeli-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 9
+URL      : https://download.kde.org/stable/applications/19.04.1/src/palapeli-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/palapeli-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/palapeli-19.04.1.tar.xz.sig
 Summary  : A single-player jigsaw puzzle game
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -23,7 +23,6 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : libkdegames-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : shared-mime-info
 
 %description
 The Goldberg Slicer: Versatile grid generator for the KDE puzzle game Palapeli
@@ -57,6 +56,7 @@ Requires: palapeli-lib = %{version}-%{release}
 Requires: palapeli-bin = %{version}-%{release}
 Requires: palapeli-data = %{version}-%{release}
 Provides: palapeli-devel = %{version}-%{release}
+Requires: palapeli = %{version}-%{release}
 Requires: palapeli = %{version}-%{release}
 
 %description dev
@@ -98,14 +98,14 @@ locales components for the palapeli package.
 
 
 %prep
-%setup -q -n palapeli-19.04.0
+%setup -q -n palapeli-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557044105
+export SOURCE_DATE_EPOCH=1557463870
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -120,7 +120,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557044105
+export SOURCE_DATE_EPOCH=1557463870
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/palapeli
 cp COPYING %{buildroot}/usr/share/package-licenses/palapeli/COPYING
