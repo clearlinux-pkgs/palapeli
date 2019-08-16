@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : palapeli
-Version  : 19.04.3
-Release  : 11
-URL      : https://download.kde.org/stable/applications/19.04.3/src/palapeli-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/palapeli-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/palapeli-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 12
+URL      : https://download.kde.org/stable/applications/19.08.0/src/palapeli-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/palapeli-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/palapeli-19.08.0.tar.xz.sig
 Summary  : A single-player jigsaw puzzle game
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -98,16 +98,17 @@ locales components for the palapeli package.
 
 
 %prep
-%setup -q -n palapeli-19.04.3
+%setup -q -n palapeli-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562892831
+export SOURCE_DATE_EPOCH=1565918232
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -121,7 +122,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562892831
+export SOURCE_DATE_EPOCH=1565918232
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/palapeli
 cp COPYING %{buildroot}/usr/share/package-licenses/palapeli/COPYING
@@ -185,8 +186,8 @@ popd
 /usr/share/palapeli/collection/panther-chameleon-female.desktop
 /usr/share/palapeli/collection/panther-chameleon-female.jpg
 /usr/share/palapeli/palapeli.kcfg
+/usr/share/qlogging-categories5/palapeli.categories
 /usr/share/xdg/palapeli-collectionrc
-/usr/share/xdg/palapeli.categories
 
 %files dev
 %defattr(-,root,root,-)
