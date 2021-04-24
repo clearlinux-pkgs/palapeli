@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : palapeli
-Version  : 20.12.3
-Release  : 29
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/palapeli-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/palapeli-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/palapeli-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 30
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/palapeli-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/palapeli-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/palapeli-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0
@@ -22,7 +22,6 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : extra-cmake-modules-data
-BuildRequires : kdoctools-dev
 BuildRequires : libkdegames-dev
 BuildRequires : qtbase-dev mesa-dev
 
@@ -99,15 +98,15 @@ locales components for the palapeli package.
 
 
 %prep
-%setup -q -n palapeli-20.12.3
-cd %{_builddir}/palapeli-20.12.3
+%setup -q -n palapeli-21.04.0
+cd %{_builddir}/palapeli-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618699298
+export SOURCE_DATE_EPOCH=1619242753
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -123,13 +122,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618699298
+export SOURCE_DATE_EPOCH=1619242753
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/palapeli
-cp %{_builddir}/palapeli-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/palapeli/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/palapeli-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/palapeli/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/palapeli-20.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/palapeli/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/palapeli-20.12.3/src/pics/LICENSE %{buildroot}/usr/share/package-licenses/palapeli/c27070819e7457aece740e2866204327de9c0080
+cp %{_builddir}/palapeli-21.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/palapeli/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/palapeli-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/palapeli/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/palapeli-21.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/palapeli/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/palapeli-21.04.0/src/pics/LICENSE %{buildroot}/usr/share/package-licenses/palapeli/c27070819e7457aece740e2866204327de9c0080
 pushd clr-build
 %make_install
 popd
@@ -137,9 +136,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/libpala/libpala-config.cmake
-/usr/lib64/libpala/pala-targets-relwithdebinfo.cmake
-/usr/lib64/libpala/pala-targets.cmake
 
 %files bin
 %defattr(-,root,root,-)
@@ -162,12 +158,7 @@ popd
 /usr/share/icons/hicolor/64x64/mimetypes/application-x-palapeli.png
 /usr/share/knotifications5/palapeli.notifyrc
 /usr/share/kservices5/ServiceMenus/palapeli_servicemenu.desktop
-/usr/share/kservices5/palapeli_goldbergslicer.desktop
-/usr/share/kservices5/palapeli_jigsawslicer.desktop
-/usr/share/kservices5/palapeli_rectslicer.desktop
 /usr/share/kservices5/palathumbcreator.desktop
-/usr/share/kservicetypes5/libpala-slicerplugin.desktop
-/usr/share/kxmlgui5/palapeli/palapeliui.rc
 /usr/share/metainfo/org.kde.palapeli.appdata.xml
 /usr/share/mime-packages/palapeli-mimetypes.xml
 /usr/share/palapeli/backgrounds/Eliminator-Funk-2.jpg
@@ -192,17 +183,21 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/Pala/Slicer
-/usr/include/Pala/SlicerJob
-/usr/include/Pala/SlicerMode
-/usr/include/Pala/SlicerProperty
-/usr/include/Pala/SlicerPropertySet
-/usr/include/libpala/libpala_export.h
-/usr/include/libpala/slicer.h
-/usr/include/libpala/slicerjob.h
-/usr/include/libpala/slicermode.h
-/usr/include/libpala/slicerproperty.h
-/usr/include/libpala/slicerpropertyset.h
+/usr/include/Pala/Pala/Slicer
+/usr/include/Pala/Pala/SlicerJob
+/usr/include/Pala/Pala/SlicerMode
+/usr/include/Pala/Pala/SlicerProperty
+/usr/include/Pala/Pala/SlicerPropertySet
+/usr/include/Pala/pala/libpala_export.h
+/usr/include/Pala/pala/slicer.h
+/usr/include/Pala/pala/slicerjob.h
+/usr/include/Pala/pala/slicermode.h
+/usr/include/Pala/pala/slicerproperty.h
+/usr/include/Pala/pala/slicerpropertyset.h
+/usr/lib64/cmake/Pala/PalaConfig.cmake
+/usr/lib64/cmake/Pala/PalaConfigVersion.cmake
+/usr/lib64/cmake/Pala/PalaTargets-relwithdebinfo.cmake
+/usr/lib64/cmake/Pala/PalaTargets.cmake
 /usr/lib64/libpala.so
 
 %files doc
@@ -238,16 +233,16 @@ popd
 %defattr(-,root,root,-)
 /usr/lib64/libpala.so.0
 /usr/lib64/libpala.so.0.2.0
-/usr/lib64/qt5/plugins/palapeli_goldbergslicer.so
-/usr/lib64/qt5/plugins/palapeli_jigsawslicer.so
-/usr/lib64/qt5/plugins/palapeli_rectslicer.so
+/usr/lib64/qt5/plugins/palapelislicers/palapeli_goldbergslicer.so
+/usr/lib64/qt5/plugins/palapelislicers/palapeli_jigsawslicer.so
+/usr/lib64/qt5/plugins/palapelislicers/palapeli_rectslicer.so
 /usr/lib64/qt5/plugins/palathumbcreator.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/palapeli/4cc77b90af91e615a64ae04893fdffa7939db84c
-/usr/share/package-licenses/palapeli/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-/usr/share/package-licenses/palapeli/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+/usr/share/package-licenses/palapeli/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+/usr/share/package-licenses/palapeli/7697008f58568e61e7598e796eafc2a997503fde
+/usr/share/package-licenses/palapeli/a4c60b3fefda228cd7439d3565df043192fef137
 /usr/share/package-licenses/palapeli/c27070819e7457aece740e2866204327de9c0080
 
 %files locales -f palapeli.lang
