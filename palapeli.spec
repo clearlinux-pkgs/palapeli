@@ -7,7 +7,7 @@
 #
 Name     : palapeli
 Version  : 23.04.1
-Release  : 55
+Release  : 56
 URL      : https://download.kde.org/stable/release-service/23.04.1/src/palapeli-23.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.1/src/palapeli-23.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.1/src/palapeli-23.04.1.tar.xz.sig
@@ -109,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684773820
+export SOURCE_DATE_EPOCH=1685579084
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -142,7 +142,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684773820
+export SOURCE_DATE_EPOCH=1685579084
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/palapeli
 cp %{_builddir}/palapeli-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/palapeli/29fb05b49e12a380545499938c4879440bd8851e || :
@@ -210,7 +210,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpala.so
 /usr/include/Pala/Pala/Slicer
 /usr/include/Pala/Pala/SlicerJob
 /usr/include/Pala/Pala/SlicerMode
@@ -267,7 +266,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpala.so.0
 /V3/usr/lib64/libpala.so.0.2.0
 /V3/usr/lib64/qt5/plugins/kf5/thumbcreator/palathumbcreator.so
 /V3/usr/lib64/qt5/plugins/palapelislicers/palapeli_goldbergslicer.so
